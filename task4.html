@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bank Account</h1>
+<div>
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber" placeholder="Enter account number">
+    
+    <label for="accountHolderName">Account Holder Name:</label>
+    <input type="text" id="accountHolderName" placeholder="Enter account holder name">
+    
+    <label for="initialBalance">Initial Balance:</label>
+    <input type="number" id="initialBalance" placeholder="Enter initial balance" min="0" value="0">
+    
+    <button onclick="createAccount()">Create Account</button>
+</div>
+
+<div id="accountInfo" style="margin-top: 20px; display:none;">
+    <h2>Account Info</h2>
+    <p>Account Number: <span id="displayAccountNumber"></span></p>
+    <p>Account Holder: <span id="displayAccountHolderName"></span></p>
+    <p>Balance: $<span id="displayBalance">0.00</span></p>
+    
+    <label for="depositAmount">Deposit Amount:</label>
+    <input type="number" id="depositAmount" placeholder="Enter amount to deposit" min="0">
+    <button onclick="deposit()">Deposit</button>
+
+    <label for="withdrawAmount">Withdraw Amount:</label>
+    <input type="number" id="withdrawAmount" placeholder="Enter amount to withdraw" min="0">
+    <button onclick="withdraw()">Withdraw</button>
+
+    <button onclick="checkBalance()">Check Balance</button>
+</div>
+
+<script>
+    class BankAccount {
+        constructor(accountNumber, accountHolderName, initialBalance) {
+            this.accountNumber = accountNumber;
+            this.accountHolderName = accountHolderName;
+            this.balance = initialBalance;
+        }
+
+        deposit(amount) {
+            if (amount > 0) {
+                this.balance += amount;
+                alert(`Deposited: $${amount.toFixed(2)}. New Balance: $${this.balance.toFixed(2)}`);
+            } else {
+                alert("Deposit amount must be positive.");
+            }
+        }
+
+        withdraw(amount) {
+            if (amount > 0) {
+                if (amount <= this.balance) {
+                    this.balance -= amount;
+                    alert(`Withdrew: $${amount.toFixed(2)}. New Balance: $${this.balance.toFixed(2)}`);
+                } else {
+                    alert("Insufficient funds for this withdrawal.");
+                }
+            } else {
+                alert("Withdrawal amount must be positive.");
+            }
+        }
+
+        checkBalance() {
+            alert(`Current Balance: $${this.balance.toFixed(2)}`);
+            return this.balance;
+        }
+    }
+
+    let bankAccount;
+
+    function createAccount() {
+        const accountNumber = document.getElementById("accountNumber").value;
+        const accountHolderName = document.getElementById("accountHolderName").value;
+        const initialBalance = parseFloat(document.getElementById("initialBalance").value);
+
+        bankAccount = new BankAccount(accountNumber, accountHolderName, initialBalance);
+
+        document.getElementById("displayAccountNumber").innerText = bankAccount.accountNumber;
+        document.getElementById("displayAccountHolderName").innerText = bankAccount.accountHolderName;
+        document.getElementById("displayBalance").innerText = bankAccount.balance.toFixed(2);
+        document.getElementById("accountInfo").style.display = "block";
+    }
+
+    function deposit() {
+        const amount = parseFloat(document.getElementById("depositAmount").value);
+        if (bankAccount) {
+            bankAccount.deposit(amount);
+            document.getElementById("displayBalance").innerText = bankAccount.balance.toFixed(2);
+        }
+    }
+
+    function withdraw() {
+        const amount = parseFloat(document.getElementById("withdrawAmount").value);
+        if (bankAccount) {
+            bankAccount.withdraw(amount);
+            document.getElementById("displayBalance").innerText = bankAccount.balance.toFixed(2);
+        }
+    }
+
+    function checkBalance() {
+        if (bankAccount) {
+            bankAccount.checkBalance();
+        }
+    }
+</script>
+
+</body>
+</html>

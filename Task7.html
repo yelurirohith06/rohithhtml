@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Eligibility Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input, button {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .eligible {
+            color: hwb(255 0% 50%);
+            font-weight: bold;
+        }
+
+        .not-eligible {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Scholarship Eligibility Checker</h1>
+    <form id="scholarshipForm">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" placeholder="Enter your name" required>
+
+        <label for="gpa">GPA:</label>
+        <input type="number" id="gpa" step="0.01" placeholder="Enter your GPA" required>
+
+        <button type="submit">Check Eligibility</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    document.getElementById("scholarshipForm").addEventListener("submit", function(e) {
+        e.preventDefault(); // Prevent the form from refreshing the page
+
+        // Get form values
+        const studentName = document.getElementById("studentName").value;
+        const gpa = parseFloat(document.getElementById("gpa").value);
+
+        // Reference to the result div
+        const resultDiv = document.getElementById("result");
+
+        // Check if GPA is eligible for scholarship
+        if (gpa >= 7.5) {
+            resultDiv.innerHTML = `<p class="eligible">${studentName}, you are eligible for the scholarship!</p>`;
+        } else {
+            resultDiv.innerHTML = `<p class="not-eligible">${studentName}, you are not eligible for the scholarship.</p>`;
+        }
+    });
+</script>
+
+</body>
+</html>

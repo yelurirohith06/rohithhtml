@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    label, input, button {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 8px;
+      width: 100%;
+    }
+    button {
+      padding: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Bank Account</h1>
+
+    <label for="accountHolderName">Account Holder Name:</label>
+    <input type="text" id="accountHolderName" placeholder="Enter Name">
+
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber" placeholder="Enter Account Number">
+
+    <label for="depositAmount">Deposit Amount:</label>
+    <input type="number" id="depositAmount" placeholder="Enter Amount">
+
+    <label for="withdrawAmount">Withdraw Amount:</label>
+    <input type="number" id="withdrawAmount" placeholder="Enter Amount">
+
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="withdraw()">Withdraw</button>
+    <button onclick="checkBalance()">Check Balance</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script src="Task4.js"></script>
+</body>
+</html>

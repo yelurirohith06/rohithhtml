@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timestamp Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            margin-right: auto;
+            border: 20px;
+            width: 20;
+            background: -moz-repeating-linear-gradient();
+            background-color: #00fff2;
+        }
+        #timestamp {
+            margin-top: 20px;
+            font-weight: bold;
+            background-position: 2cm;
+            background-color: blanchedalmond;
+            border-radius: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Current Timestamp</h1>
+    <button id="presentTimestamp">Get Current Timestamp</button>
+    <div id="timestamp"></div>
+
+
+    <script>
+        document.getElementById('presentTimestamp').addEventListener('click', function() {
+            const now = new Date();
+            const timestamp = now.toLocaleString(); // Formats date and time
+            document.getElementById('timestamp').innerText = timestamp;
+        });
+    </script>
+</body>
+</html>

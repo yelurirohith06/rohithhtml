@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Discount Calculator</h2>
+    <label for="costPrice">Enter Cost Price:</label>
+    <input type="number" id="costPrice" placeholder="Cost Price" required>
+    <button onclick="calculateSellingPrice()">Calculate Selling Price</button>
+    
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateSellingPrice() {
+        // Get the cost price from the input field
+        const costPrice = parseFloat(document.getElementById('costPrice').value);
+        
+        // Check if the input is a valid number
+        if (isNaN(costPrice) || costPrice < 0) {
+            document.getElementById('result').innerText = 'Please enter a valid cost price.';
+            return;
+        }
+
+        // Calculate the discount (20% of cost price)
+        const discount = costPrice * 0.20;
+
+        // Calculate the selling price
+        const sellingPrice = costPrice - discount;
+
+        // Display the selling price
+        document.getElementById('result').innerText = `Selling Price after 20% discount: $${sellingPrice.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>

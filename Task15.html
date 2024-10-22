@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .error-message {
+            color: red;
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Reset Password</h2>
+    
+    <form id="resetPasswordForm">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" required>
+        
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" required>
+        
+        <p id="errorMessage" class="error-message"></p>
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    const newPassword = document.getElementById("newPassword");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const errorMessage = document.getElementById("errorMessage");
+
+    // Disable right-click
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // Disable copy and paste, and show message
+    const restrictAction = (e, action) => {
+        e.preventDefault();
+        errorMessage.textContent = action + " is restricted";
+        errorMessage.style.display = "block";
+    };
+
+    // Event listeners for New Password field
+    newPassword.addEventListener('copy', (e) => restrictAction(e, "Copy"));
+    newPassword.addEventListener('paste', (e) => restrictAction(e, "Paste"));
+
+    // Event listeners for Confirm Password field
+    confirmPassword.addEventListener('copy', (e) => restrictAction(e, "Copy"));
+    confirmPassword.addEventListener('paste', (e) => restrictAction(e, "Paste"));
+
+    // Reset the error message on typing
+    newPassword.addEventListener('input', () => errorMessage.style.display = "none");
+    confirmPassword.addEventListener('input', () => errorMessage.style.display = "none");
+</script>
+
+</body>
+</html>

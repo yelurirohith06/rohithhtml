@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    
+        
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 50px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .success {
+            color: green;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>User Registration Form</h2>
+    <form id="registrationForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile"><br><br>
+
+        <button type="submit">Submit</button>
+        <div class="error" id="error"></div>
+    </form>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            // Get form values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+
+            let errors = [];
+
+            // Username validation
+            if (!username) {
+                errors.push("Username should not be empty.");
+            } else if (username.includes(" ")) {
+                errors.push("Username should not contain spaces.");
+            }
+
+            // Password validation
+            if (!password) {
+                errors.push("Password should not be empty.");
+            } else {
+                if (!/[A-Z]/.test(password)) {
+                    errors.push("Password should contain at least one uppercase letter.");
+                }
+                if (!/[a-z]/.test(password)) {
+                    errors.push("Password should contain at least one lowercase letter.");
+                }
+                if (!/\d/.test(password)) {
+                    errors.push("Password should contain at least one digit.");
+                }
+                if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                    errors.push("Password should contain at least one special character.");
+                }
+            }
+
+            // Email validation
+            if (!email) {
+                errors.push("Email should not be empty.");
+            } else if (!email.endsWith("@gmail.com")) {
+                errors.push("Email should end with '@gmail.com'.");
+            }
+
+            // Mobile number validation
+            if (!mobile) {
+                errors.push("Mobile number should not be empty.");
+            } else if (!/^\d{10}$/.test(mobile)) {
+                errors.push("Mobile number should be exactly 10 digits long.");
+            }
+
+            // Display errors
+            const errorDiv = document.getElementById('error');
+            if (errors.length > 0) {
+                errorDiv.innerHTML = errors.join("<br>");
+            } else {
+                errorDiv.innerHTML = "Form submitted successfully!";
+            }
+        });
+    </script>
+
+</body>
+</html>

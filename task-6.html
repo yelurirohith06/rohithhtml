@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        input, button {
+            margin: 5px;
+        }
+        .loan-list {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loan Manager</h1>
+    <h2>Apply for a Loan</h2>
+    <form id="loan-form">
+        <input type="text" id="applicantName" placeholder="Applicant Name" required>
+        <input type="number" id="monthlyIncome" placeholder="Monthly Income" required>
+        <input type="number" id="accountBalance" placeholder="Account Balance" required>
+        <button type="submit">Apply for Loan</button>
+    </form>
+    <div class="loan-list">
+        <h3>Loan Applications</h3>
+        <ul id="loanApplications"></ul>
+    </div>
+    <script src="loan cal.js"></script>
+</body>
+</html>

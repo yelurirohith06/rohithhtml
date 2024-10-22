@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Translation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: aqua;
+            border: 0cm;
+            border-color: blue;
+            border-radius: 20px;
+            padding: 50;
+
+        }
+        select, p {
+            font-size: 18px;
+            margin-top: 10px;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Google Translation</h1>
+    <label for="language-select">Select a language:</label>
+    <select id="language-select">
+        <option value="english">English</option>
+        <option value="hindi">Hindi</option>
+        <option value="french">French</option>
+        <option value="telugu">Telugu</option>
+        <option value="dutch">Dutch</option>
+        <option value="Tamil">tamil</option>
+    </select>
+
+    <p id="translated-text">Hi welcome to google translation</p>
+
+    <script>
+        const translations = {
+            english: "Hi welcome to google translation",
+            hindi: "नमस्ते, Google अनुवाद में आपका स्वागत है",
+            french: "Salut, bienvenue dans Google traduction",
+            telugu: "హాయ్, గూగుల్ అనువాదానికి స్వాగతం",
+            dutch: "Hallo, welkom bij Google vertaling",
+            Tamil: "Google moḻiyākkattiṟku varavēṟkiṟōm",
+        };
+
+        const languageSelect = document.getElementById('language-select');
+        const translatedText = document.getElementById('translated-text');
+
+        languageSelect.addEventListener('change', function() {
+            const selectedLanguage = languageSelect.value;
+            translatedText.textContent = translations[selectedLanguage];
+        });
+    </script>
+
+</body>
+</html>

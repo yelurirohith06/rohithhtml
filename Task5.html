@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        .container {
+          max-width: 400px;
+          margin: 0 auto;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          background-color: #f9f9f9;
+        }
+        label, input, button {
+          display: block;
+          margin-bottom: 10px;
+        }
+        input {
+          padding: 8px;
+          width: 100%;
+        }
+        button {
+          padding: 8px;
+          width: 100%;
+          cursor: pointer;
+        }
+        .result {
+          margin-top: 20px;
+        }
+      </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Loan EMI Calculator</h1>
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" id="loanAmount"><br>
+
+        <label for="interestRate">Interest Rate (Annual %):</label>
+        <input type="number" id="interestRate" step="0.01"><br>
+
+        <label for="loanTerm">Loan Term (Years):</label>
+        <input type="number" id="loanTerm"><br>
+
+        <label for="emisPaid">Number of EMIs Paid:</label>
+        <input type="number" id="emisPaid"><br>
+
+        <button onclick="calculateLoan()">Calculate EMI</button>
+
+        <div class="output">
+            <p id="monthlyPayment"></p>
+            <p id="loanStatus"></p>
+        </div>
+    </div>
+
+    <script src="Task5.html"></script>
+</body>
+</html>

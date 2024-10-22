@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Fibonacci Series</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        label, input, button {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .result p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Fibonacci Series in Reverse Order</h1>
+    <label for="num">Enter the number of terms:</label>
+    <input type="number" id="num" placeholder="Enter number of terms" required>
+    <button onclick="displayReverseFibonacci()">Generate Fibonacci</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    // Function to generate Fibonacci series up to n terms
+    function generateFibonacci(n) {
+        let fibonacciSeries = [];
+        let a = 0, b = 1;
+
+        // Generate the Fibonacci sequence up to n terms
+        for (let i = 0; i < n; i++) {
+            fibonacciSeries.push(a);
+            let nextNumber = a + b;
+            a = b;
+            b = nextNumber;
+        }
+
+        return fibonacciSeries;
+    }
+
+    // Function to display the Fibonacci series in reverse order
+    function displayReverseFibonacci() {
+        const num = document.getElementById("num").value;  // Get number of terms
+        const resultDiv = document.getElementById("result");
+
+        // Validate input
+        if (num <= 0) {
+            resultDiv.innerHTML = "<p>Please enter a valid positive number.</p>";
+            return;
+        }
+
+        // Generate Fibonacci series
+        const fibonacciSeries = generateFibonacci(num);
+
+        // Reverse the Fibonacci series
+        const reversedSeries = fibonacciSeries.reverse();
+
+        // Display the result
+        resultDiv.innerHTML = `<p>Fibonacci Series in Reverse Order: ${reversedSeries.join(', ')}</p>`;
+    }
+</script>
+
+</body>
+</html>
